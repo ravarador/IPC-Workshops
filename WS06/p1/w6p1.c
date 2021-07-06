@@ -62,6 +62,11 @@ double getDoublePositive(double* num) {
 }
 
 // 3. Opening Message (include the number of products that need entering)
+void openingMessage(void)
+{
+	printf("Cat Food Cost Analysis\n");
+	printf("======================\n");
+}
 
 
 // 4. Get user input for the details of cat food product
@@ -79,5 +84,7 @@ void displayCatFoodHeader(void)
 
 // 7. Logic entry point
 void start() {
+	openingMessage();
 
+	displayCatFoodHeader();
 }
