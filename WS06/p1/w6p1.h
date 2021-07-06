@@ -14,9 +14,11 @@
 // ----------------------------------------------------------------------------
 // structures
 
-struct CatInfo {
+struct CatFoodInfo {
 	int SkuNumber;
-
+	double ProductPrice;
+	int CalPerServing;
+	double ProductWeight;
 };
 
 

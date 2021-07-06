@@ -70,7 +70,15 @@ void openingMessage(void)
 
 
 // 4. Get user input for the details of cat food product
+struct CatFoodInfo getCatFoodInfo(void)
+{
+	struct CatFoodInfo catFoodInfo;
 
+	printf("SKU         $Price    Bag-lbs Cal/Serv\n");
+	printf("------- ---------- ---------- --------\n");
+
+	return catFoodInfo;
+}
 
 // 5. Display the formatted table header
 void displayCatFoodHeader(void)
@@ -80,7 +88,11 @@ void displayCatFoodHeader(void)
 }
 
 // 6. Display a formatted record of cat food data
-
+void displayCatFoodData(void)
+{
+	printf("SKU         $Price    Bag-lbs Cal/Serv\n");
+	printf("------- ---------- ---------- --------\n");
+}
 
 // 7. Logic entry point
 void start() {
