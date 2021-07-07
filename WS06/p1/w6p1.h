@@ -2,10 +2,10 @@
 	==================================================
 	Workshop #6 (Part-1):
 	==================================================
-	Name   :
-	ID     :
-	Email  :
-	Section:
+	Name   : Jexequiel Ravni Arador
+	ID     : 127168219
+	Email  : jrarador@myseneca.ca
+	Section: NBB
 */
 
 #define MAX_PRODUCT_NUM 3
