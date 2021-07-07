@@ -2,10 +2,10 @@
 	==================================================
 	Workshop #6 (Part-1):
 	==================================================
-	Name   : 
-	ID     : 
-	Email  : 
-	Section: 
+	Name   : Jexequiel Ravni Arador
+	ID     : 127168219
+	Email  : jrarador@myseneca.ca
+	Section: NBB
 */
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -66,15 +66,22 @@ void openingMessage(void)
 {
 	printf("Cat Food Cost Analysis\n");
 	printf("======================\n\n");
-	printf("Enter the details for 3 dry food bags of product data for analysis.\n");
+	printf("Enter the details for %d dry food bags of product data for analysis.\n", MAX_PRODUCT_NUM);
 	printf("NOTE: A 'serving' is %dg\n", SUGGESTED_SERVING_SIZE_GRAMS);
 }
 
 
 // 4. Get user input for the details of cat food product
-struct CatFoodInfo getCatFoodInfo(const int id)
+struct CatFoodInfo getCatFoodInfo(const int productNumber)
 {
 	struct CatFoodInfo catFoodInfo = { 0 };
+
+	printf("\nCat Food Product #%d\n", productNumber);
+	printf("--------------------\n");
+	printf("SKU           : "); catFoodInfo.SkuNumber = getIntPositive(&catFoodInfo.SkuNumber);
+	printf("PRICE         : $"); catFoodInfo.ProductPrice = getDoublePositive(&catFoodInfo.ProductPrice);
+	printf("WEIGHT (LBS)  : "); catFoodInfo.ProductWeight = getDoublePositive(&catFoodInfo.ProductWeight);
+	printf("CALORIES/SERV.: "); catFoodInfo.CalPerServing = getIntPositive(&catFoodInfo.CalPerServing);
 
 	return catFoodInfo;
 }
@@ -94,7 +101,19 @@ void displayCatFoodData(const int SkuNumber, const double* ProductPrice, const i
 
 // 7. Logic entry point
 void start() {
+	struct CatFoodInfo catFoodInfos[MAX_PRODUCT_NUM] = { 0 };
+
 	openingMessage();
+
+	int i;
+	for (i = 0; i < MAX_PRODUCT_NUM; i++) {
+		struct CatFoodInfo catFoodInfo = getCatFoodInfo(i + 1);
+
+		catFoodInfos[i].SkuNumber = catFoodInfo.SkuNumber;
+		catFoodInfos[i].CalPerServing = catFoodInfo.CalPerServing;
+		catFoodInfos[i].ProductPrice = catFoodInfo.ProductPrice;
+		catFoodInfos[i].ProductWeight = catFoodInfo.ProductWeight;
+	}
 
 	//displayCatFoodHeader();
 }
