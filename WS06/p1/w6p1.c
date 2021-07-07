@@ -96,16 +96,16 @@ void displayCatFoodHeader(void)
 // 6. Display a formatted record of cat food data
 void displayCatFoodData(const int SkuNumber, const double* ProductPrice, const int CalPerServing, const double* ProductWeight)
 {
-
+	printf("%07d %10.2lf %10.1lf %8d\n", SkuNumber, *ProductPrice, *ProductWeight, CalPerServing);
 }
 
 // 7. Logic entry point
 void start() {
+	int i;
 	struct CatFoodInfo catFoodInfos[MAX_PRODUCT_NUM] = { 0 };
 
 	openingMessage();
-
-	int i;
+	
 	for (i = 0; i < MAX_PRODUCT_NUM; i++) {
 		struct CatFoodInfo catFoodInfo = getCatFoodInfo(i + 1);
 
@@ -115,5 +115,9 @@ void start() {
 		catFoodInfos[i].ProductWeight = catFoodInfo.ProductWeight;
 	}
 
-	//displayCatFoodHeader();
+	displayCatFoodHeader();
+
+	for (i = 0; i < MAX_PRODUCT_NUM; i++) {
+		displayCatFoodData(catFoodInfos[i].SkuNumber, &catFoodInfos[i].ProductPrice, catFoodInfos[i].CalPerServing, &catFoodInfos[i].ProductWeight);
+	}
 }
