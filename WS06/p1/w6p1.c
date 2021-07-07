@@ -89,7 +89,7 @@ struct CatFoodInfo getCatFoodInfo(const int productNumber)
 // 5. Display the formatted table header
 void displayCatFoodHeader(void)
 {
-	printf("SKU         $Price    Bag-lbs Cal/Serv\n");
+	printf("\nSKU         $Price    Bag-lbs Cal/Serv\n");
 	printf("------- ---------- ---------- --------\n");
 }
 
