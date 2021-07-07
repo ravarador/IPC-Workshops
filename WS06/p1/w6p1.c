@@ -102,7 +102,7 @@ void displayCatFoodData(const int SkuNumber, const double* ProductPrice, const i
 // 7. Logic entry point
 void start() {
 	int i;
-	struct CatFoodInfo catFoodInfos[MAX_PRODUCT_NUM] = { 0 };
+	struct CatFoodInfo catFoodInfos[MAX_PRODUCT_NUM] = { { 0 } };
 
 	openingMessage();
 	
