@@ -9,7 +9,7 @@
 */
 
 #define MAX_PRODUCT_NUM 3
-#define SUGGESTED_SERVING_SIZE_GRAMS 3
+#define SUGGESTED_SERVING_SIZE_GRAMS 64
 
 // ----------------------------------------------------------------------------
 // structures

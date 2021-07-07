@@ -65,14 +65,16 @@ double getDoublePositive(double* num) {
 void openingMessage(void)
 {
 	printf("Cat Food Cost Analysis\n");
-	printf("======================\n");
+	printf("======================\n\n");
+	printf("Enter the details for 3 dry food bags of product data for analysis.\n");
+	printf("NOTE: A 'serving' is %dg\n", SUGGESTED_SERVING_SIZE_GRAMS);
 }
 
 
 // 4. Get user input for the details of cat food product
 struct CatFoodInfo getCatFoodInfo(const int id)
 {
-	struct CatFoodInfo catFoodInfo;
+	struct CatFoodInfo catFoodInfo = { 0 };
 
 	return catFoodInfo;
 }
@@ -94,5 +96,5 @@ void displayCatFoodData(const int SkuNumber, const double* ProductPrice, const i
 void start() {
 	openingMessage();
 
-	displayCatFoodHeader();
+	//displayCatFoodHeader();
 }
