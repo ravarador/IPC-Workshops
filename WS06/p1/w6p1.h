@@ -37,13 +37,13 @@ double getDoublePositive(double* num);
 void openingMessage(void);
 
 // 4. Get user input for the details of cat food product
-
+struct CatFoodInfo getCatFoodInfo(const int id);
 
 // 5. Display the formatted table header
-
+void displayCatFoodHeader(void);
 
 // 6. Display a formatted record of cat food data
-
+void displayCatFoodData(const int SkuNumber, const double* ProductPrice, const int CalPerServing, const double* ProductWeight);
 
 // 7. Logic entry point
 void start();
