@@ -212,7 +212,12 @@ void displayReportHeader(void)
 
 // 16. Display the formatted data row in the analysis table
 void displayReportData(const struct ReportData data, const int isCheapestProduct) {
-
+	printf("%07d %10.2lf %10.1lf %10.4lf %9d %8d %8.1lf %7.2lf %7.5lf",
+		data.SkuNumber, data.ProductPrice, data.WeightInLbs, data.WeightInKg, data.WeightInG, data.CalPerServing, data.TotalServings, data.CostPerServing, data.CalPerServingCost);
+	
+	if (isCheapestProduct) {
+		printf("***");
+	}
 }
 
 // 17. Display the findings (cheapest)
