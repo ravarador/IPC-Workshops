@@ -121,7 +121,14 @@ double convertLbsKg(const double* lbsToConvert, double* kgResult) {
 
 // 9. convert lbs: g (call convertKG, then * 1000)
 int convertLbsG(const double* lbsToConvert, int* gResult) {
+	double g;
 
+	g = convertLbsKg(lbsToConvert, NULL) * 1000;
+
+	if (gResult != NULL)
+		*gResult = g;
+
+	return g;
 }
 
 // 10. convert lbs: kg and g
