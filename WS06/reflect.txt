@@ -8,4 +8,25 @@ Date: 07/08/2021
 There are two ways to pass a structure to function in C, to pass a structure by value (structure variable) and to pass a structure by address (structure pointer). To pass a structure by value means that the whole structure is passed to another function with all members and their values while to pass a structure by address means that only the address of the structure is passed to another function. Hence, passing a structure by address is a much faster solution that passing a structure by value.
 displayReportData function has a parameter that accepts a structure by value. To improve the passing of structure to displayReportData, we should pass the structure by address.
 
-2.
+2. The first thing that I will do is I will nest CatFoodInfo structure into ReportData.
+
+struct ReportData {
+	struct CatFoodInfo CatFood;
+	double WeightInKg;
+	int WeightInG;
+	double TotalServings;
+	double CostPerServing;
+	double CalPerServingCost;
+};
+
+After that, I will have some minor changes in the code in order to utilize the new form of ReportData. Instead of passing CatFoodInfo to functions, I will pass ReportData. To access CatFoodInfo, it would require to access ReportData first then CatFoodInfo (ReportData.CatFoodInfo.ANY_MEMBER_OF_CATFOODINFO_HERE).
+"displayReportData" function will look like this after the change:
+
+void displayReportData(const struct ReportData data, const int isCheapestProduct) {
+	printf("%07d %10.2lf %10.1lf %10.4lf %9d %8d %8.1lf %7.2lf %7.5lf",
+		data.CatFood.SkuNumber, data.CatFood.ProductPrice, data.CatFood.ProductWeight, data.WeightInKg, data.WeightInG, data.CatFood.CalPerServing, data.TotalServings, data.CostPerServing, data.CalPerServingCost);
+	
+	isCheapestProduct ? printf(" ***\n") : printf("\n");
+}
+
+The difference in this new approach is that to be able to access the CatFoodInfo members, the code will need to include the struct member CatFood of ReportData (ReportData.CatFood).
