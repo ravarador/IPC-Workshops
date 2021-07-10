@@ -85,7 +85,7 @@ double calculateCostPerServing(const double* productPrice, const double* totalNu
 double calculateCostPerCal(const double* productPrice, const double* totalNumberOfCalories, double* costPerCalResult);
 
 // 14. Derive a reporting detail record based on the cat food product data
-struct ReportData calculateReportData(const struct CatFoodInfo data);
+struct ReportData calculateReportData(const struct CatFoodInfo catFoodData);
 
 // 15. Display the formatted table header for the analysis results
 void displayReportHeader(void);

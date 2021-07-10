@@ -149,22 +149,56 @@ void convertLbs(const double* lbsToConvert, double* kgResult, int* gResult) {
 
 // 11. calculate: servings based on gPerServ
 double calculateServings(const int servingSizeGrams, const int productTotalGrams, double* numOfServingsResult) {
+	double servings;
 
+	servings = (double)productTotalGrams / servingSizeGrams;
+
+	if (numOfServingsResult != NULL)
+		*numOfServingsResult = servings;
+
+	return servings;
 }
 
 // 12. calculate: cost per serving
 double calculateCostPerServing(const double* productPrice, const double* totalNumOfServings, double* costPerServingResult) {
+	double costPerServing;
 
+	costPerServing = (double)*totalNumOfServings / *productPrice;
+
+	if (costPerServingResult != NULL)
+		*costPerServingResult = costPerServing;
+
+	return costPerServing;
 }
 
 // 13. calculate: cost per calorie
 double calculateCostPerCal(const double* productPrice, const double* totalNumberOfCalories, double* costPerCalResult) {
+	double costPerCal;
 
+	costPerCal = (double)*totalNumberOfCalories / *productPrice;
+
+	if (costPerCalResult != NULL)
+		*costPerCalResult = costPerCal;
+
+	return costPerCal;
 }
 
 // 14. Derive a reporting detail record based on the cat food product data
-struct ReportData calculateReportData(const struct CatFoodInfo data) {
+struct ReportData calculateReportData(const struct CatFoodInfo catFoodData) {
+	struct ReportData reportData;
+	double totalCalories;
 
+	reportData.SkuNumber = catFoodData.SkuNumber;
+	reportData.ProductPrice = catFoodData.ProductPrice;
+	reportData.CalPerServing = catFoodData.CalPerServing;
+	reportData.WeightInLbs = catFoodData.ProductWeight;
+	convertLbs(&reportData.WeightInLbs, &reportData.WeightInKg, &reportData.WeightInG);
+	reportData.TotalServings = calculateServings(SUGGESTED_SERVING_SIZE_GRAMS, reportData.WeightInG, NULL);
+	reportData.CostPerServing = calculateCostPerServing(&reportData.ProductPrice, &reportData.TotalServings, NULL);
+	totalCalories = reportData.CalPerServing * reportData.TotalServings;
+	reportData.CalPerServingCost = calculateCostPerCal(&reportData.ProductPrice, &totalCalories, NULL);
+
+	return reportData;
 }
 
 // 15. Display the formatted table header for the analysis results
