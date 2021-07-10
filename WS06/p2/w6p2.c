@@ -133,7 +133,18 @@ int convertLbsG(const double* lbsToConvert, int* gResult) {
 
 // 10. convert lbs: kg and g
 void convertLbs(const double* lbsToConvert, double* kgResult, int* gResult) {
+	double g, kg;
 
+	g = convertLbsG(lbsToConvert, NULL);
+	kg = convertLbsKg(lbsToConvert, NULL);
+
+	if (gResult != NULL) {
+		*gResult = g;
+	}
+
+	if (kgResult != NULL) {
+		*kgResult = kg;
+	}
 }
 
 // 11. calculate: servings based on gPerServ
