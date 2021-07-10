@@ -51,7 +51,7 @@ int getIntPositive(int* num);
 double getDoublePositive(double* num);
 
 // 3. Opening Message (include the number of products that need entering)
-void openingMessage(void);
+void openingMessage(const int numberOfProducts);
 
 // 4. Get user input for the details of cat food product
 struct CatFoodInfo getCatFoodInfo(const int id);
@@ -67,34 +67,34 @@ void displayCatFoodData(const int SkuNumber, const double* ProductPrice, const i
 // PART-2
 
 // 8. convert lbs: kg
-
+double convertLbsKg(const double* lbsToConvert, double* kgResult);
 
 // 9. convert lbs: g
-
+int convertLbsG(const double* lbsToConvert, int* gResult);
 
 // 10. convert lbs: kg / g
-
+void convertLbs(const double* lbsToConvert, double* kgResult, int* gResult);
 
 // 11. calculate: servings based on gPerServ
-
+double calculateServings(const int servingSizeGrams, const int productTotalGrams, double* numOfServingsResult);
 
 // 12. calculate: cost per serving
-
+double calculateCostPerServing(const double* productPrice, const double* totalNumOfServings, double* costPerServingResult);
 
 // 13. calculate: cost per calorie
-
+double calculateCostPerCal(const double* productPrice, const double* totalNumberOfCalories, double* costPerCalResult)
 
 // 14. Derive a reporting detail record based on the cat food product data
-
+struct ReportData calculateReportData(const struct CatFoodInfo data);
 
 // 15. Display the formatted table header for the analysis results
 void displayReportHeader(void);
 
 // 16. Display the formatted data row in the analysis table
-
+void displayReportData(const struct ReportData data, const int isCheapestProduct);
 
 // 17. Display the findings (cheapest)
-
+void displayFinalAnalysis(const struct CatFoodInfo cheapestCatFood);
 
 // ----------------------------------------------------------------------------
 

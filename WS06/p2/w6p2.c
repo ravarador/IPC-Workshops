@@ -65,11 +65,11 @@ double getDoublePositive(double* num) {
 }
 
 // 3. Opening Message (include the number of products that need entering)
-void openingMessage(void)
+void openingMessage(const int numberOfProducts)
 {
 	printf("Cat Food Cost Analysis\n");
 	printf("======================\n\n");
-	printf("Enter the details for %d dry food bags of product data for analysis.\n", MAX_PRODUCT_NUM);
+	printf("Enter the details for %d dry food bags of product data for analysis.\n", numberOfProducts);
 	printf("NOTE: A 'serving' is %dg\n", SUGGESTED_SERVING_SIZE_GRAMS);
 }
 
