@@ -163,7 +163,7 @@ double calculateServings(const int servingSizeGrams, const int productTotalGrams
 double calculateCostPerServing(const double* productPrice, const double* totalNumOfServings, double* costPerServingResult) {
 	double costPerServing;
 
-	costPerServing = (double)*totalNumOfServings / *productPrice;
+	costPerServing = *productPrice / *totalNumOfServings;
 
 	if (costPerServingResult != NULL)
 		*costPerServingResult = costPerServing;
@@ -175,7 +175,7 @@ double calculateCostPerServing(const double* productPrice, const double* totalNu
 double calculateCostPerCal(const double* productPrice, const double* totalNumberOfCalories, double* costPerCalResult) {
 	double costPerCal;
 
-	costPerCal = (double)*totalNumberOfCalories / *productPrice;
+	costPerCal = *productPrice  / *totalNumberOfCalories;
 
 	if (costPerCalResult != NULL)
 		*costPerCalResult = costPerCal;
@@ -204,7 +204,7 @@ struct ReportData calculateReportData(const struct CatFoodInfo catFoodData) {
 // 15. Display the formatted table header for the analysis results
 void displayReportHeader(void)
 {
-	printf("Analysis Report (Note: Serving = %dg\n", SUGGESTED_SERVING_SIZE_GRAMS);
+	printf("\nAnalysis Report (Note: Serving = %dg)\n", SUGGESTED_SERVING_SIZE_GRAMS);
 	printf("---------------\n");
 	printf("SKU         $Price    Bag-lbs     Bag-kg     Bag-g Cal/Serv Servings  $/Serv   $/Cal\n");
 	printf("------- ---------- ---------- ---------- --------- -------- -------- ------- -------\n");
@@ -215,14 +215,16 @@ void displayReportData(const struct ReportData data, const int isCheapestProduct
 	printf("%07d %10.2lf %10.1lf %10.4lf %9d %8d %8.1lf %7.2lf %7.5lf",
 		data.SkuNumber, data.ProductPrice, data.WeightInLbs, data.WeightInKg, data.WeightInG, data.CalPerServing, data.TotalServings, data.CostPerServing, data.CalPerServingCost);
 	
-	if (isCheapestProduct) {
-		printf("***");
-	}
+	isCheapestProduct ? printf(" ***\n") : printf("\n");
 }
 
 // 17. Display the findings (cheapest)
 void displayFinalAnalysis(const struct CatFoodInfo cheapestCatFood) {
-
+	printf("\nFinal Analysis\n");
+	printf("--------------\n");
+	printf("Based on the comparison data, the PURRR-fect economical option is:\n");
+	printf("SKU:%07d Price: $%.2lf\n", cheapestCatFood.SkuNumber, cheapestCatFood.ProductPrice);
+	printf("\nHappy shopping!\n");
 }
 
 // ----------------------------------------------------------------------------
@@ -230,8 +232,10 @@ void displayFinalAnalysis(const struct CatFoodInfo cheapestCatFood) {
 // 7. Logic entry point
 void start(void)
 {
-	int i;
+	int i, minIndex = 0;
+	double min = _CRT_INT_MAX;
 	struct CatFoodInfo catFoodInfos[MAX_PRODUCT_NUM] = { { 0 } };
+	struct ReportData reportData[MAX_PRODUCT_NUM] = { { 0 } };
 
 	openingMessage(MAX_PRODUCT_NUM);
 
@@ -249,4 +253,21 @@ void start(void)
 	for (i = 0; i < MAX_PRODUCT_NUM; i++) {
 		displayCatFoodData(catFoodInfos[i].SkuNumber, &catFoodInfos[i].ProductPrice, catFoodInfos[i].CalPerServing, &catFoodInfos[i].ProductWeight);
 	}
+
+	for (i = 0; i < MAX_PRODUCT_NUM; i++) {
+		reportData[i] = calculateReportData(catFoodInfos[i]);
+
+		if (reportData[i].CalPerServingCost < min) {
+			min = reportData[i].CalPerServingCost;
+			minIndex = i;
+		}
+	}
+
+	displayReportHeader();
+
+	for (i = 0; i < MAX_PRODUCT_NUM; i++) {
+		i == minIndex ? displayReportData(reportData[i], 1) : displayReportData(reportData[i], 0);
+	}
+
+	displayFinalAnalysis(catFoodInfos[minIndex]);
 }
