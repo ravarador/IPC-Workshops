@@ -13,6 +13,7 @@
 
 #define MAX_PRODUCT_NUM 3
 #define SUGGESTED_SERVING_SIZE_GRAMS 64
+#define CONVERSION_FACTOR_LBSKG 2.20462
 
 // ----------------------------------------------------------------------------
 // structures
@@ -22,6 +23,18 @@ struct CatFoodInfo {
 	double ProductPrice;
 	int CalPerServing;
 	double ProductWeight;
+};
+
+struct ReportData {
+	int SkuNumber;
+	double ProductPrice;
+	int CalPerServing;
+	double WeightInLbs;
+	double WeightInKg;
+	int WeightInG;
+	double TotalServings;
+	double CostPerServing;
+	double CalPerServingCost;
 };
 
 // ----------------------------------------------------------------------------
