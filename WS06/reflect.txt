@@ -1,0 +1,11 @@
+Name: Jexequiel Ravni Arador
+Student number: 127168219
+Email: jrarador@myseneca.ca
+Section: NBB
+Date: 07/08/2021
+
+1. Report data has 3 integer data type members and 6 double floating-point data type members. An integer data type member consumes 4 bytes of memory and a double floating-point data type member consumes 8 bytes of memory. To sum it up, ReportData requires 60 bytes of memory.
+There are two ways to pass a structure to function in C, to pass a structure by value (structure variable) and to pass a structure by address (structure pointer). To pass a structure by value means that the whole structure is passed to another function with all members and their values while to pass a structure by address means that only the address of the structure is passed to another function. Hence, passing a structure by address is a much faster solution that passing a structure by value.
+displayReportData function has a parameter that accepts a structure by value. To improve the passing of structure to displayReportData, we should pass the structure by address.
+
+2.
