@@ -14,7 +14,7 @@
 #include<stdio.h>
 
 // User-Defined Libraries
-#include"w6p2.h"
+#include "w6p2.h"
 
 // ----------------------------------------------------------------------------
 // PART-1
@@ -108,45 +108,88 @@ void displayCatFoodData(const int SkuNumber, const double* ProductPrice, const i
 // PART-2
 
 // 8. convert lbs: kg (divide by 2.20462)
+double convertLbsKg(const double* lbsToConvert, double* kgResult) {
+	double kg;
 
+	kg = *lbsToConvert / 2.20462;
+
+	if (kgResult != NULL)
+		*kgResult = kg;
+
+	return kg;
+}
 
 // 9. convert lbs: g (call convertKG, then * 1000)
+int convertLbsG(const double* lbsToConvert, int* gResult) {
 
+}
 
 // 10. convert lbs: kg and g
+void convertLbs(const double* lbsToConvert, double* kgResult, int* gResult) {
 
+}
 
 // 11. calculate: servings based on gPerServ
+double calculateServings(const int servingSizeGrams, const int productTotalGrams, double* numOfServingsResult) {
 
+}
 
 // 12. calculate: cost per serving
+double calculateCostPerServing(const double* productPrice, const double* totalNumOfServings, double* costPerServingResult) {
 
+}
 
 // 13. calculate: cost per calorie
+double calculateCostPerCal(const double* productPrice, const double* totalNumberOfCalories, double* costPerCalResult) {
 
+}
 
 // 14. Derive a reporting detail record based on the cat food product data
+struct ReportData calculateReportData(const struct CatFoodInfo data) {
 
+}
 
 // 15. Display the formatted table header for the analysis results
 void displayReportHeader(void)
 {
-	printf("Analysis Report (Note: Serving = %dg\n", ???);
+	printf("Analysis Report (Note: Serving = %dg\n", SUGGESTED_SERVING_SIZE_GRAMS);
 	printf("---------------\n");
 	printf("SKU         $Price    Bag-lbs     Bag-kg     Bag-g Cal/Serv Servings  $/Serv   $/Cal\n");
 	printf("------- ---------- ---------- ---------- --------- -------- -------- ------- -------\n");
 }
 
 // 16. Display the formatted data row in the analysis table
+void displayReportData(const struct ReportData data, const int isCheapestProduct) {
 
+}
 
 // 17. Display the findings (cheapest)
+void displayFinalAnalysis(const struct CatFoodInfo cheapestCatFood) {
 
+}
 
 // ----------------------------------------------------------------------------
 
 // 7. Logic entry point
 void start(void)
 {
+	int i;
+	struct CatFoodInfo catFoodInfos[MAX_PRODUCT_NUM] = { { 0 } };
 
+	openingMessage(MAX_PRODUCT_NUM);
+
+	for (i = 0; i < MAX_PRODUCT_NUM; i++) {
+		struct CatFoodInfo catFoodInfo = getCatFoodInfo(i + 1);
+
+		catFoodInfos[i].SkuNumber = catFoodInfo.SkuNumber;
+		catFoodInfos[i].CalPerServing = catFoodInfo.CalPerServing;
+		catFoodInfos[i].ProductPrice = catFoodInfo.ProductPrice;
+		catFoodInfos[i].ProductWeight = catFoodInfo.ProductWeight;
+	}
+
+	displayCatFoodHeader();
+
+	for (i = 0; i < MAX_PRODUCT_NUM; i++) {
+		displayCatFoodData(catFoodInfos[i].SkuNumber, &catFoodInfos[i].ProductPrice, catFoodInfos[i].CalPerServing, &catFoodInfos[i].ProductWeight);
+	}
 }

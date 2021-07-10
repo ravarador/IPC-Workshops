@@ -82,7 +82,7 @@ double calculateServings(const int servingSizeGrams, const int productTotalGrams
 double calculateCostPerServing(const double* productPrice, const double* totalNumOfServings, double* costPerServingResult);
 
 // 13. calculate: cost per calorie
-double calculateCostPerCal(const double* productPrice, const double* totalNumberOfCalories, double* costPerCalResult)
+double calculateCostPerCal(const double* productPrice, const double* totalNumberOfCalories, double* costPerCalResult);
 
 // 14. Derive a reporting detail record based on the cat food product data
 struct ReportData calculateReportData(const struct CatFoodInfo data);
@@ -99,4 +99,4 @@ void displayFinalAnalysis(const struct CatFoodInfo cheapestCatFood);
 // ----------------------------------------------------------------------------
 
 // 7. Logic entry point 
-
+void start(void);
