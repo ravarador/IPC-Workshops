@@ -204,7 +204,7 @@ struct ReportData calculateReportData(const struct CatFoodInfo catFoodData) {
 // 15. Display the formatted table header for the analysis results
 void displayReportHeader(void)
 {
-	printf("\nAnalysis Report (Note: Serving = %dg)\n", SUGGESTED_SERVING_SIZE_GRAMS);
+	printf("\nAnalysis Report (Note: Serving = %dg\n", SUGGESTED_SERVING_SIZE_GRAMS);
 	printf("---------------\n");
 	printf("SKU         $Price    Bag-lbs     Bag-kg     Bag-g Cal/Serv Servings  $/Serv   $/Cal\n");
 	printf("------- ---------- ---------- ---------- --------- -------- -------- ------- -------\n");
@@ -233,7 +233,7 @@ void displayFinalAnalysis(const struct CatFoodInfo cheapestCatFood) {
 void start(void)
 {
 	int i, minIndex = 0;
-	double min = _CRT_INT_MAX;
+	double min = MAX_INT;
 	struct CatFoodInfo catFoodInfos[MAX_PRODUCT_NUM] = { { 0 } };
 	struct ReportData reportData[MAX_PRODUCT_NUM] = { { 0 } };
 
